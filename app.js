@@ -67,7 +67,7 @@ function addToDo(toDo, id, done, trash) {
                  `;
 
 
-    const position = "beforeend";
+    const position = "afterbegin";
 
     list.insertAdjacentHTML(position, item);
 }
