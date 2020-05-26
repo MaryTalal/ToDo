@@ -18,11 +18,11 @@ let data = localStorage.getItem("TODO");
 
 //check if data is not empty
 
-if(data){
+if (data) {
     LIST = JSON.parse(data);
     id = LIST.length; //set the id to the last
     loadList(LIST); //load the list to the user interface
-}else { //if data isn't empty
+} else { //if data isn't empty
     LIST = [];
     id = 0;
 }
@@ -30,7 +30,7 @@ if(data){
 //load items to the user's interface
 
 function loadList(array) {
-    array.forEach(function (item) {
+    array.forEach(function(item) {
         addToDo(item.name, item.id, item.done, item.trash);
     });
 }
@@ -43,10 +43,10 @@ clear.addEventListener('click', function() {
 
 //show today Date
 const options = {
-    weekday:'long',
+    weekday: 'long',
     year: 'numeric',
-    month:'short',
-    day:'numeric'
+    month: 'short',
+    day: 'numeric'
 };
 
 const today = new Date();
@@ -54,7 +54,7 @@ dateElement.innerHTML = today.toLocaleDateString("en-US", options);
 
 function addToDo(toDo, id, done, trash) {
 
-    if(trash){ return; }
+    if (trash) { return; }
 
     const DONE = done ? CHECK : UNCHECK;
     const LINE = done ? LINE_THROUGH : "";
@@ -67,10 +67,10 @@ function addToDo(toDo, id, done, trash) {
                  `;
 
 
-     const position = "beforeend";
+    const position = "beforeend";
 
-     list.insertAdjacentHTML(position, item);
- }
+    list.insertAdjacentHTML(position, item);
+}
 
 document.addEventListener("keyup", function(even) {
     if (event.keyCode == 13) {
@@ -116,3 +116,18 @@ list.addEventListener("click", function(event) {
     localStorage.setItem("TODO", JSON.stringify(LIST));
 
 });
+
+//random Header Image
+function randomHeaderImage() {
+    let randomNumber = Math.floor(Math.random() * 5);
+    let imagesArr = ['./img/cT2inWwHuik.jpg', './img/FCl4Z_bk5S.jpg', './img/iLmCWCQ22lc.jpg', './img/KlWzyYE6UyQ.jpg', './img/lpfh8dErjPU.jpg', './img/NspFZbV3ZoQ.jpg'];
+    let elem = document.getElementById("header"),
+        value = elem.value;
+    if (!isNaN(parseFloat(value))) {
+        elem.style.backgroundImage = imagesArr[randomNumber];
+    } else {
+        elem.style.backgroundImage = `url(${imagesArr[randomNumber]})`;
+    }
+}
+
+randomHeaderImage();
